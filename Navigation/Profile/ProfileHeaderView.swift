@@ -70,6 +70,11 @@ class ProfileHeaderView: UIView {
         return textField
     }()
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.avatarImage.layer.cornerRadius = self.avatarImage.frame.height/2
+    }
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
