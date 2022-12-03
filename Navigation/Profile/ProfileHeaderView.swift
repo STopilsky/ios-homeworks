@@ -94,60 +94,38 @@ class ProfileHeaderView: UIView {
         self.addSubview(self.nameLabel)
         self.addSubview(self.currentStatusLabel)
         self.addSubview(self.newStatusTextField)
-
-        let avatarImageConstraints = self.avatarImageConstraints()
-        let changeStatusButtonConstraints = self.changeStatusButtonConstraints()
-        let nameLabelConstraints = self.nameLabelConstraints()
-        let currentStatusLabellConstraints = self.currentStatusLabellConstraints()
-        let newStatusTextFieldlConstraints = self.newStatusTextFieldlConstraints()
-
-        NSLayoutConstraint.activate(avatarImageConstraints +
-                                    changeStatusButtonConstraints +
-                                    nameLabelConstraints +
-                                    currentStatusLabellConstraints +
-                                    newStatusTextFieldlConstraints)
+        self.constraintsActivating()
 
     }
 
-    private func avatarImageConstraints() -> ([NSLayoutConstraint]) {
-        let topConstraint = self.avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
-        let leadingConstraint = self.avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16)
-        let widthConstraint = self.avatarImage.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3)
-        let heightConstraint = self.avatarImage.heightAnchor.constraint(equalTo: self.avatarImage.widthAnchor)
-        return [topConstraint, leadingConstraint, widthConstraint, heightConstraint]
-    }
+    private func constraintsActivating() {
+        NSLayoutConstraint.activate([
+            self.avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            self.avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            self.avatarImage.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3),
+            self.avatarImage.heightAnchor.constraint(equalTo: self.avatarImage.widthAnchor),
 
-    private func changeStatusButtonConstraints() -> ([NSLayoutConstraint]) {
-        let topConstraint = self.changeStatusButton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 16)
-        let bottomConstraint = self.changeStatusButton.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -16)
-        let heightConstraint = self.changeStatusButton.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.3)
-        let leadingConstraint = self.changeStatusButton.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor)
-        let trailingConstraint = self.changeStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
-        return [topConstraint, leadingConstraint, trailingConstraint, heightConstraint, bottomConstraint]
-    }
+            self.changeStatusButton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 16),
+            self.changeStatusButton.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -16),
+            self.changeStatusButton.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.3),
+            self.changeStatusButton.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor),
+            self.changeStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
 
-    private func nameLabelConstraints() -> ([NSLayoutConstraint]) {
-        let topConstraint = self.nameLabel.topAnchor.constraint(equalTo: avatarImage.topAnchor)
-        let heightConstraint = self.nameLabel.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2)
-        let leadingConstraint = self.nameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20)
-        let trailingConstraint = self.nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
-        return [topConstraint, leadingConstraint, trailingConstraint, heightConstraint]
-    }
+            self.nameLabel.topAnchor.constraint(equalTo: avatarImage.topAnchor),
+            self.nameLabel.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
+            self.nameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
+            self.nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
 
-    private func currentStatusLabellConstraints() -> ([NSLayoutConstraint]) {
-        let centreYConstraint = self.currentStatusLabel.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor)
-        let heightConstraint = self.currentStatusLabel.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2)
-        let leadingConstraint = self.currentStatusLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20)
-        let trailingConstraint = self.currentStatusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
-        return [centreYConstraint, leadingConstraint, trailingConstraint, heightConstraint]
-    }
+            self.currentStatusLabel.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
+            self.currentStatusLabel.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
+            self.currentStatusLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
+            self.currentStatusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
 
-    private func newStatusTextFieldlConstraints() -> ([NSLayoutConstraint]) {
-        let bottomConstraint = self.newStatusTextField.bottomAnchor.constraint(equalTo: avatarImage.bottomAnchor)
-        let heightConstraint = self.newStatusTextField.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2)
-        let leadingConstraint = self.newStatusTextField.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20)
-        let trailingConstraint = self.newStatusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
-        return [bottomConstraint, leadingConstraint, trailingConstraint, heightConstraint]
+            self.newStatusTextField.bottomAnchor.constraint(equalTo: avatarImage.bottomAnchor),
+            self.newStatusTextField.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
+            self.newStatusTextField.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
+            self.newStatusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
+        ])
     }
 
     @objc private func didTupChangeStatusButton() {

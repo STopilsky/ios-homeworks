@@ -75,7 +75,11 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.setupGestures()
-        self.navigationController?.navigationBar.isHidden = true
+        self.addingSubViews()
+        self.constraintsActivating()
+    }
+
+    private func addingSubViews() {
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.logoImage)
         self.scrollView.addSubview(self.lpStacklView)
@@ -83,6 +87,9 @@ class LogInViewController: UIViewController {
         self.lpStacklView.addArrangedSubview(self.passwordTextField)
         self.scrollView.addSubview(self.logInButton)
 
+    }
+
+    private func constraintsActivating() {
         NSLayoutConstraint.activate([
             self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
@@ -116,6 +123,7 @@ class LogInViewController: UIViewController {
                                                selector: #selector(self.didHideKeyboard(_:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+        self.navigationController?.navigationBar.isHidden = true
     }
 
     private func setupGestures() {
