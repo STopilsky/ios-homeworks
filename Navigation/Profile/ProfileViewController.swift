@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController {
     private lazy var newButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.layer.cornerRadius = 12
-        button.setTitle("newButton", for: .normal)
+        button.setTitle("New Button", for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemGray6
+        self.navigationController?.navigationBar.isHidden = false
         self.view.addSubview(self.profileHeaderView)
         self.view.addSubview(self.newButton)
         self.navigationItem.title = profileHeaderView.profileTitle
@@ -52,8 +53,6 @@ class ProfileViewController: UIViewController {
         let leadingConstraint = self.profileHeaderView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         let trailingConstraint = self.profileHeaderView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         let heightConstraint = self.profileHeaderView.heightAnchor.constraint(equalToConstant: 220)
-//        let bottomConstraint = self.profileHeaderView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-
         return ([topConstraint, leadingConstraint, trailingConstraint, heightConstraint])
     }
 
