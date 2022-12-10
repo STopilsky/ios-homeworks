@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
     var profileTitle = "Profile"
     var statusText = "Waiting for something..."
     
@@ -75,20 +75,17 @@ class ProfileHeaderView: UIView {
         self.avatarImage.layer.cornerRadius = self.avatarImage.frame.height/2
     }
 
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         self.setupView()
     }
-
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
     private func setupView() {
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .darkGray
         self.addSubview(self.avatarImage)
         self.addSubview(self.changeStatusButton)
         self.addSubview(self.nameLabel)
