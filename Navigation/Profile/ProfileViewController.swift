@@ -1,0 +1,78 @@
+//
+//  ProfileViewController.swift
+//  Navigation
+//
+//  Created by Сергей Топильский on 30.08.2022.
+//
+
+import UIKit
+
+class ProfileViewController: UIViewController {
+
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultTableViewCell")
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
+        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .systemGray6
+        self.navigationController?.navigationBar.isHidden = false
+        self.view.addSubview(self.tableView)
+        self.constraintsActivating()
+    }
+
+
+    private func constraintsActivating () {
+        NSLayoutConstraint.activate([
+            self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
+    }
+
+}
+
+extension ProfileViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        arrayOfPosts.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath)
+                as? CustomTableViewCell
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultTableViewCell", for: indexPath)
+            return cell
+        }
+        
+        let post = arrayOfPosts[indexPath.row]
+        cell.setup(author: post.author,
+                   description: post.description,
+                   image: post.image,
+                   likes: post.likes,
+                   views: post.views)
+        return cell
+    }
+}
+
+extension ProfileViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
+        view.backgroundColor = .systemBlue
+        return view
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 200 : 0
+    }
+}

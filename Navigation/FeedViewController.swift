@@ -9,40 +9,68 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
-    var post = Post(title: "Это мой пост")
+    var titlePost = "My first post"
 
-    private lazy var button: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        button.backgroundColor = .systemMint
+    private var firstButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.setTitle("First Button", for: .normal)
         button.layer.cornerRadius = 20
-        button.setTitle("Пост", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        button.backgroundColor = .systemIndigo
+        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.7
+        button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(didTupButton), for: .touchUpInside)
         return button
+    } ()
+
+    private var secondButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.setTitle("Second Button", for: .normal)
+        button.layer.cornerRadius = 20
+        button.backgroundColor = .systemMint
+        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.7
+        button.layer.masksToBounds = false
+        button.addTarget(self, action: #selector(didTupButton), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var twoButtonsStackView: UIStackView = {
+        let stack = UIStackView(frame: .zero)
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.spacing = 10
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
-        self.view.addSubview(self.button)
-        self.button.center = self.view.center
+        self.view.addSubview(twoButtonsStackView)
+        self.twoButtonsStackView.addArrangedSubview(firstButton)
+        self.twoButtonsStackView.addArrangedSubview(secondButton)
+
+        let twoButtonsStackViewConstraints = twoButtonsStackViewConstraints()
+        NSLayoutConstraint.activate(twoButtonsStackViewConstraints)
     }
 
-    @objc private func didTupButton () {
+    private func twoButtonsStackViewConstraints() -> ([NSLayoutConstraint]) {
+        let centerYConstraint = self.twoButtonsStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        let centerXConstraint = self.twoButtonsStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let heightConstraint = self.twoButtonsStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3)
+        let widthConstraint = self.twoButtonsStackView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8)
+        return ([centerYConstraint, centerXConstraint, heightConstraint, widthConstraint])
+    }
+
+    @objc private func didTupButton() {
         let postViewController = PostViewController ()
-        postViewController.titlePost = post.title
+        postViewController.titlePost = titlePost
         self.navigationController?.pushViewController(postViewController, animated: true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
