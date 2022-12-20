@@ -8,6 +8,7 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
+    
     private lazy var authorNamelabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -100,7 +101,4 @@ class CustomTableViewCell: UITableViewCell {
             self.viewsLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
         ])
     }
-
-    
-
 }
