@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
@@ -78,7 +78,6 @@ extension ProfileViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
-        view.backgroundColor = .systemBlue
         return view
     }
 
