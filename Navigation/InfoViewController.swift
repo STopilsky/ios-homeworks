@@ -24,7 +24,6 @@ class InfoViewController: UIViewController {
         view.backgroundColor = .systemGray3
         self.view.addSubview(self.alertButton)
         self.alertButton.center = self.view.center
-        // Do any additional setup after loading the view.
     }
 
     @objc private func didTupAlertButton () {

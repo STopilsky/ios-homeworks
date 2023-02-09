@@ -10,15 +10,28 @@ import UIKit
 class ProfileHeaderView: UITableViewHeaderFooterView {
     var profileTitle = "Profile"
     var statusText = "Waiting for something..."
+    private var isAvatarIncreased = false
+    private var avatarCenterPoint = CGPoint()
+
+    private var avatarImageWidth: NSLayoutConstraint?
+    private var avatarImageHeight: NSLayoutConstraint?
+    private var avatarImageTop: NSLayoutConstraint?
+    private var avatarImageLeft: NSLayoutConstraint?
     
     private lazy var avatarImage: UIImageView = {
         let imageView = UIImageView(frame: .zero)
-        imageView.layer.cornerRadius = 50
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "defaultavatar")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapAvatar))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGesture)
+
         return imageView
     }()
 
@@ -70,9 +83,32 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return textField
     }()
 
+    private lazy var avatarBackgroundView: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .darkGray
+        view.isHidden = true
+        view.alpha = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private lazy var closeButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.setImage(UIImage(systemName: "xmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30)), for: .normal)
+        button.alpha = 0
+        button.backgroundColor = .clear
+        button.tintColor = .black
+        button.contentMode = .scaleToFill
+        button.layer.masksToBounds = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(closeAvatar), for: .touchUpInside)
+        return button
+    }()
+
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.avatarImage.layer.cornerRadius = self.avatarImage.frame.height/2
+        self.avatarImage.layer.cornerRadius = self.isAvatarIncreased ? 0 : self.avatarImage.frame.height/2
     }
 
     override init(reuseIdentifier: String?) {
@@ -86,21 +122,29 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
     private func setupView() {
         self.backgroundColor = .darkGray
-        self.addSubview(self.avatarImage)
         self.addSubview(self.changeStatusButton)
         self.addSubview(self.nameLabel)
         self.addSubview(self.currentStatusLabel)
         self.addSubview(self.newStatusTextField)
+        self.addSubview(self.avatarBackgroundView)
+        self.addSubview(self.avatarImage)
+        self.addSubview(self.closeButton)
+
+        self.avatarImageWidth = self.avatarImage.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3)
+        self.avatarImageHeight = self.avatarImage.heightAnchor.constraint(equalTo: self.avatarImage.widthAnchor)
+        self.avatarImageTop = self.avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
+        self.avatarImageLeft = self.avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16)
+
         self.constraintsActivating()
 
     }
 
     private func constraintsActivating() {
         NSLayoutConstraint.activate([
-            self.avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            self.avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            self.avatarImage.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3),
-            self.avatarImage.heightAnchor.constraint(equalTo: self.avatarImage.widthAnchor),
+            self.avatarImageTop!,
+            self.avatarImageLeft!,
+            self.avatarImageWidth!,
+            self.avatarImageHeight!,
 
             self.changeStatusButton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 16),
             self.changeStatusButton.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -16),
@@ -121,7 +165,17 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             self.newStatusTextField.bottomAnchor.constraint(equalTo: avatarImage.bottomAnchor),
             self.newStatusTextField.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
             self.newStatusTextField.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-            self.newStatusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
+            self.newStatusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+
+            self.avatarBackgroundView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.avatarBackgroundView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.avatarBackgroundView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            self.avatarBackgroundView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+
+            self.closeButton.topAnchor.constraint(equalTo: avatarBackgroundView.topAnchor),
+            self.closeButton.trailingAnchor.constraint(equalTo: avatarBackgroundView.trailingAnchor),
+            self.closeButton.heightAnchor.constraint(equalToConstant: 50),
+            self.closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor)
         ])
     }
 
@@ -138,5 +192,40 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     @objc private func statusTextChange(_ textField: UITextField) {
         statusText = textField.text ?? statusText
     }
-    
+
+    @objc private func didTapAvatar() {
+
+        avatarCenterPoint = avatarImage.center
+        isAvatarIncreased.toggle()
+
+        let multiplier = UIScreen.main.bounds.width / avatarImage.bounds.width
+
+        UIView.animate(withDuration: 0.5) {
+            self.avatarImage.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY - self.avatarImage.frame.height/2)
+            self.avatarImage.transform = CGAffineTransform(scaleX: multiplier, y: multiplier)
+            self.avatarImage.layer.cornerRadius = 0
+
+            self.avatarBackgroundView.isHidden = false
+            self.avatarBackgroundView.alpha = 0.7
+
+        } completion: { _ in UIView.animate(withDuration: 0.3) {
+            self.closeButton.alpha = 1
+        }
+        }
+    }
+
+    @objc private func closeAvatar() {
+
+        isAvatarIncreased.toggle()
+
+        UIView.animate(withDuration: 0.5) {
+            self.avatarImage.center = self.avatarCenterPoint
+            self.avatarImage.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.avatarImage.layer.cornerRadius = self.avatarImage.frame.height/2
+
+            self.avatarBackgroundView.isHidden = false
+            self.avatarBackgroundView.alpha = 0
+            self.closeButton.alpha = 0
+        }
+    }
 }
