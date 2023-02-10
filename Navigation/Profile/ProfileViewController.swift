@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemGray6
+        self.view.backgroundColor = Configuration.viewBackgroundColor
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Post"
         self.view.addSubview(self.tableView)
