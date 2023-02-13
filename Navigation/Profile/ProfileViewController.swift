@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
 
@@ -63,6 +64,7 @@ extension ProfileViewController: UITableViewDataSource {
 
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
+
             let post = arrayOfPosts[indexPath.row - 1]
             cell.setup(author: post.author,
                        description: post.description,

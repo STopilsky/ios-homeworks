@@ -22,9 +22,8 @@
 		AAB6D3DA299575AA00883622 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = AAB6D3CA299575AA00883622 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AAB6D3DD299575AA00883622 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB6D3C8299575AA00883622 /* StorageService.framework */; };
 		AAB6D3DE299575AA00883622 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAB6D3C8299575AA00883622 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AAB6D3EA2995887900883622 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F66D28AD782700516590 /* Post.swift */; };
-		AAB6D3EB299588AA00883622 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F66D28AD782700516590 /* Post.swift */; };
 		AAB6D3ED29963B3600883622 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB6D3EC29963B3600883622 /* Configuration.swift */; };
+		AAB6D3F8299650B100883622 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB6D3F7299650B000883622 /* Post.swift */; };
 		AAD8EDC62923E30800C59566 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD8EDC52923E30800C59566 /* LogInViewController.swift */; };
 		AADB37E028BE71CE00E2A374 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADB37DF28BE71CE00E2A374 /* ProfileHeaderView.swift */; };
 		AADB37E228BEA31C00E2A374 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADB37E128BEA31C00E2A374 /* ProfileViewController.swift */; };
@@ -64,7 +63,6 @@
 		AA27F66128AD073A00516590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA27F66728AD318D00516590 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		AA27F66B28AD665600516590 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		AA27F66D28AD782700516590 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AA27F67128AD813900516590 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		AAB2790A29452855005D17AD /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		AAB2790C29455784005D17AD /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -73,6 +71,7 @@
 		AAB6D3CA299575AA00883622 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		AAB6D3CB299575AA00883622 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		AAB6D3EC29963B3600883622 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		AAB6D3F7299650B000883622 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AAD8EDC52923E30800C59566 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		AADB37DF28BE71CE00E2A374 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		AADB37E128BEA31C00E2A374 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -135,7 +134,7 @@
 		AAB6D3C9299575AA00883622 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
-				AA27F66D28AD782700516590 /* Post.swift */,
+				AAB6D3F7299650B000883622 /* Post.swift */,
 				AAB6D3CA299575AA00883622 /* StorageService.h */,
 				AAB6D3CB299575AA00883622 /* StorageService.docc */,
 			);
@@ -273,7 +272,6 @@
 				AAB6D3ED29963B3600883622 /* Configuration.swift in Sources */,
 				AA27F66C28AD665600516590 /* PostViewController.swift in Sources */,
 				AADB37E228BEA31C00E2A374 /* ProfileViewController.swift in Sources */,
-				AAB6D3EB299588AA00883622 /* Post.swift in Sources */,
 				AA27F65428AD073700516590 /* AppDelegate.swift in Sources */,
 				AA1F1F55293BE7B400F69361 /* CustomTableViewCell.swift in Sources */,
 				AADB37E028BE71CE00E2A374 /* ProfileHeaderView.swift in Sources */,
@@ -289,8 +287,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAB6D3F8299650B100883622 /* Post.swift in Sources */,
 				AAB6D3CC299575AA00883622 /* StorageService.docc in Sources */,
-				AAB6D3EA2995887900883622 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -445,6 +443,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,6 +471,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
