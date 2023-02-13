@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
 
@@ -23,7 +24,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemGray6
+        self.view.backgroundColor = Configuration.viewBackgroundColor
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Post"
         self.view.addSubview(self.tableView)
@@ -63,6 +64,7 @@ extension ProfileViewController: UITableViewDataSource {
 
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
+
             let post = arrayOfPosts[indexPath.row - 1]
             cell.setup(author: post.author,
                        description: post.description,
