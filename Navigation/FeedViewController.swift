@@ -21,7 +21,6 @@ class FeedViewController: UIViewController {
         button.layer.shadowRadius = 4
         button.layer.shadowOpacity = 0.7
         button.layer.masksToBounds = false
-        button.addTarget(self, action: #selector(didTupButton), for: .touchUpInside)
         return button
     } ()
 
@@ -35,7 +34,6 @@ class FeedViewController: UIViewController {
         button.layer.shadowRadius = 4
         button.layer.shadowOpacity = 0.7
         button.layer.masksToBounds = false
-        button.addTarget(self, action: #selector(didTupButton), for: .touchUpInside)
         return button
     }()
 
@@ -52,19 +50,25 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
         self.view.addSubview(twoButtonsStackView)
+        self.firstButton.addTarget(self,
+                                   action: #selector(didTupButton),
+                                   for: .touchUpInside)
+        self.secondButton.addTarget(self,
+                                   action: #selector(didTupButton),
+                                   for: .touchUpInside)
         self.twoButtonsStackView.addArrangedSubview(firstButton)
         self.twoButtonsStackView.addArrangedSubview(secondButton)
 
-        let twoButtonsStackViewConstraints = twoButtonsStackViewConstraints()
-        NSLayoutConstraint.activate(twoButtonsStackViewConstraints)
+        self.twoButtonsStackViewConstraints()
     }
 
-    private func twoButtonsStackViewConstraints() -> ([NSLayoutConstraint]) {
-        let centerYConstraint = self.twoButtonsStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        let centerXConstraint = self.twoButtonsStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        let heightConstraint = self.twoButtonsStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3)
-        let widthConstraint = self.twoButtonsStackView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8)
-        return ([centerYConstraint, centerXConstraint, heightConstraint, widthConstraint])
+    private func twoButtonsStackViewConstraints() {
+        NSLayoutConstraint.activate([
+            self.twoButtonsStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.twoButtonsStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.twoButtonsStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3),
+            self.twoButtonsStackView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8)
+        ])
     }
 
     @objc private func didTupButton() {
