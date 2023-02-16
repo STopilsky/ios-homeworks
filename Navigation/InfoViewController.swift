@@ -41,5 +41,4 @@ class InfoViewController: UIViewController {
 
         self.present(alertController, animated: true)
     }
-
 }

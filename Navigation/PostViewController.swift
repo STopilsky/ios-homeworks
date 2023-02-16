@@ -24,5 +24,4 @@ class PostViewController: UIViewController {
         let infoViewController = InfoViewController ()
         self.present(infoViewController, animated: true)
     }
-    
 }

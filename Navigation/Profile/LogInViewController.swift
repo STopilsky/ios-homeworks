@@ -159,5 +159,4 @@ class LogInViewController: UIViewController {
         let profileViewController = ProfileViewController()
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
-
 }

@@ -7,6 +7,8 @@
 
 import UIKit
 import StorageService
+import SnapKit
+import iOSIntPackage
 
 class ProfileViewController: UIViewController {
 
@@ -14,11 +16,9 @@ class ProfileViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultTableViewCell")
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
-        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         return tableView
     }()
 
@@ -28,17 +28,14 @@ class ProfileViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Post"
         self.view.addSubview(self.tableView)
-        self.constraintsActivating()
+        self.setupConstraints()
     }
 
 
-    private func constraintsActivating () {
-        NSLayoutConstraint.activate([
-            self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        ])
+    private func setupConstraints() {
+        self.tableView.snp.makeConstraints {make in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide)
+        }
     }
 
     @objc private func didTupPhotosCell() {
@@ -63,7 +60,7 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
 
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! PostTableViewCell
 
             let post = arrayOfPosts[indexPath.row - 1]
             cell.setup(author: post.author,

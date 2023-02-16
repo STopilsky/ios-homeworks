@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     var profileTitle = "Profile"
@@ -24,7 +25,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "defaultavatar")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapAvatar))
         tapGesture.numberOfTapsRequired = 1
@@ -46,7 +46,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.layer.shadowOpacity = 0.7
         button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(didTupChangeStatusButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -55,7 +54,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         name.text = "Hipster Cat"
         name.font = UIFont.boldSystemFont(ofSize: 18)
         name.textColor = .black
-        name.translatesAutoresizingMaskIntoConstraints = false
         return name
     }()
 
@@ -64,7 +62,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         label.text = statusText
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -79,7 +76,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         textField.textColor = .black
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.addTarget(self, action: #selector(statusTextChange), for: .editingChanged)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
@@ -88,7 +84,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         view.backgroundColor = .darkGray
         view.isHidden = true
         view.alpha = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -100,7 +95,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.tintColor = .black
         button.contentMode = .scaleToFill
         button.layer.masksToBounds = false
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(closeAvatar), for: .touchUpInside)
         return button
     }()
@@ -121,7 +115,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
 
     private func setupView() {
-        self.backgroundColor = .darkGray
         self.addSubview(self.changeStatusButton)
         self.addSubview(self.nameLabel)
         self.addSubview(self.currentStatusLabel)
@@ -130,53 +123,49 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         self.addSubview(self.avatarImage)
         self.addSubview(self.closeButton)
 
-        self.avatarImageWidth = self.avatarImage.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3)
-        self.avatarImageHeight = self.avatarImage.heightAnchor.constraint(equalTo: self.avatarImage.widthAnchor)
-        self.avatarImageTop = self.avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
-        self.avatarImageLeft = self.avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16)
-
         self.constraintsActivating()
-
     }
 
     private func constraintsActivating() {
-        NSLayoutConstraint.activate([
-            self.avatarImageTop!,
-            self.avatarImageLeft!,
-            self.avatarImageWidth!,
-            self.avatarImageHeight!,
 
-            self.changeStatusButton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 16),
-            self.changeStatusButton.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -16),
-            self.changeStatusButton.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.3),
-            self.changeStatusButton.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor),
-            self.changeStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+        self.avatarImage.snp.makeConstraints {make in
+            make.width.height.equalTo(self.snp.height).multipliedBy(0.6)
+            make.top.leading.equalToSuperview().inset(16)
+        }
 
-            self.nameLabel.topAnchor.constraint(equalTo: avatarImage.topAnchor),
-            self.nameLabel.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
-            self.nameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-            self.nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+        self.changeStatusButton.snp.makeConstraints {make in
+            make.bottom.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(self.avatarImage).multipliedBy(0.25)
+        }
 
-            self.currentStatusLabel.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
-            self.currentStatusLabel.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
-            self.currentStatusLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-            self.currentStatusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+        self.nameLabel.snp.makeConstraints {make in
+            make.top.equalTo(self.avatarImage)
+            make.leading.equalTo(self.avatarImage.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(self.avatarImage).multipliedBy(0.25)
+        }
 
-            self.newStatusTextField.bottomAnchor.constraint(equalTo: avatarImage.bottomAnchor),
-            self.newStatusTextField.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
-            self.newStatusTextField.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-            self.newStatusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+        self.currentStatusLabel.snp.makeConstraints {make in
+            make.centerY.equalTo(self.avatarImage)
+            make.leading.trailing.height.equalTo(self.nameLabel)
+        }
 
-            self.avatarBackgroundView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.avatarBackgroundView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.avatarBackgroundView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-            self.avatarBackgroundView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+        self.newStatusTextField.snp.makeConstraints {make in
+            make.bottom.equalTo(self.avatarImage)
+            make.leading.trailing.height.equalTo(self.nameLabel)
+        }
 
-            self.closeButton.topAnchor.constraint(equalTo: avatarBackgroundView.topAnchor),
-            self.closeButton.trailingAnchor.constraint(equalTo: avatarBackgroundView.trailingAnchor),
-            self.closeButton.heightAnchor.constraint(equalToConstant: 50),
-            self.closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor)
-        ])
+        self.avatarBackgroundView.snp.makeConstraints {make in
+            make.top.centerX.equalToSuperview()
+            make.width.equalTo(UIScreen.main.bounds.width)
+            make.height.equalTo(UIScreen.main.bounds.height)
+        }
+
+        self.closeButton.snp.makeConstraints {make in
+            make.top.trailing.equalTo(self.avatarBackgroundView)
+            make.width.height.equalTo(50)
+        }
     }
 
     @objc private func didTupChangeStatusButton() {
