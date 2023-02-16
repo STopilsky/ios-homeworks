@@ -17,6 +17,7 @@
 		AA27F66C28AD665600516590 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F66B28AD665600516590 /* PostViewController.swift */; };
 		AA27F67228AD813900516590 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F67128AD813900516590 /* InfoViewController.swift */; };
 		AAAA8DD3299CE13800511E0E /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = AAAA8DD2299CE13800511E0E /* iOSIntPackage */; };
+		AAAA8DD6299E10B500511E0E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAAA8DD5299E10B500511E0E /* SnapKit */; };
 		AAB2790B29452855005D17AD /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB2790A29452855005D17AD /* PhotosTableViewCell.swift */; };
 		AAB2790D29455784005D17AD /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB2790C29455784005D17AD /* PhotosCollectionViewCell.swift */; };
 		AAB2790F294616DF005D17AD /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB2790E294616DF005D17AD /* PhotosViewController.swift */; };
@@ -90,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAA8DD6299E10B500511E0E /* SnapKit in Frameworks */,
 				AAB6D3DD299575AA00883622 /* StorageService.framework in Frameworks */,
 				AAAA8DD3299CE13800511E0E /* iOSIntPackage in Frameworks */,
 			);
@@ -220,6 +222,7 @@
 			name = Navigation;
 			packageProductDependencies = (
 				AAAA8DD2299CE13800511E0E /* iOSIntPackage */,
+				AAAA8DD5299E10B500511E0E /* SnapKit */,
 			);
 			productName = Navigation;
 			productReference = AA27F65028AD073700516590 /* Navigation.app */;
@@ -273,6 +276,7 @@
 			mainGroup = AA27F64728AD073700516590;
 			packageReferences = (
 				AAAA8DD1299CE13800511E0E /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				AAAA8DD4299E10B500511E0E /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = AA27F65128AD073700516590 /* Products */;
 			projectDirPath = "";
@@ -697,6 +701,14 @@
 				version = 3.2.3;
 			};
 		};
+		AAAA8DD4299E10B500511E0E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -704,6 +716,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AAAA8DD1299CE13800511E0E /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
+		};
+		AAAA8DD5299E10B500511E0E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAAA8DD4299E10B500511E0E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
