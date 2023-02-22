@@ -10,17 +10,28 @@ import StorageService
 
 class ProfileViewController: UIViewController {
 
+    public var userData: User
+
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultTableViewCell")
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+
+    init(userData: User) {
+        self.userData = userData
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +41,6 @@ class ProfileViewController: UIViewController {
         self.view.addSubview(self.tableView)
         self.constraintsActivating()
     }
-
 
     private func constraintsActivating () {
         NSLayoutConstraint.activate([
@@ -63,7 +73,7 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
 
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! PostTableViewCell
 
             let post = arrayOfPosts[indexPath.row - 1]
             cell.setup(author: post.author,
@@ -80,6 +90,7 @@ extension ProfileViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
+        view.setup(user: userData)
         return view
     }
 

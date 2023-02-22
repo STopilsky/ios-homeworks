@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell {
     
     private lazy var authorNamelabel: UILabel = {
         let label = UILabel()
@@ -86,7 +86,7 @@ class CustomTableViewCell: UITableViewCell {
             self.postImageView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             self.postImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             self.postImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            self.postImageView.heightAnchor.constraint(equalToConstant: self.contentView.frame.width),
+            self.postImageView.heightAnchor.constraint(equalTo: self.contentView.widthAnchor),
 
             self.descriptionlabel.topAnchor.constraint(equalTo: self.postImageView.bottomAnchor, constant: 16),
             self.descriptionlabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),

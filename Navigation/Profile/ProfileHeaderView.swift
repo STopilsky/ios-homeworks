@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
+    
     var profileTitle = "Profile"
-    var statusText = "Waiting for something..."
+    var statusText = ""
     private var isAvatarIncreased = false
     private var avatarCenterPoint = CGPoint()
 
@@ -23,7 +25,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "defaultavatar")
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapAvatar))
@@ -52,7 +53,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
     private lazy var nameLabel: UILabel = {
         let name = UILabel(frame: .zero)
-        name.text = "Hipster Cat"
         name.font = UIFont.boldSystemFont(ofSize: 18)
         name.textColor = .black
         name.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +61,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
     private lazy var currentStatusLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = statusText
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -120,8 +119,14 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func setup (user: User) {
+        self.nameLabel.text = user.fullName
+        self.avatarImage.image = user.avatar
+        statusText = user.status
+        self.currentStatusLabel.text = statusText
+    }
+
     private func setupView() {
-        self.backgroundColor = .darkGray
         self.addSubview(self.changeStatusButton)
         self.addSubview(self.nameLabel)
         self.addSubview(self.currentStatusLabel)
@@ -129,43 +134,36 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         self.addSubview(self.avatarBackgroundView)
         self.addSubview(self.avatarImage)
         self.addSubview(self.closeButton)
-
-        self.avatarImageWidth = self.avatarImage.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3)
-        self.avatarImageHeight = self.avatarImage.heightAnchor.constraint(equalTo: self.avatarImage.widthAnchor)
-        self.avatarImageTop = self.avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
-        self.avatarImageLeft = self.avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16)
-
         self.constraintsActivating()
 
     }
 
     private func constraintsActivating() {
         NSLayoutConstraint.activate([
-            self.avatarImageTop!,
-            self.avatarImageLeft!,
-            self.avatarImageWidth!,
-            self.avatarImageHeight!,
+            self.avatarImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
+            self.avatarImage.widthAnchor.constraint(equalTo: self.avatarImage.heightAnchor),
+            self.avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            self.avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
 
-            self.changeStatusButton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 16),
-            self.changeStatusButton.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -16),
-            self.changeStatusButton.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.3),
-            self.changeStatusButton.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor),
+            self.changeStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
+            self.changeStatusButton.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.25),
+            self.changeStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             self.changeStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
 
             self.nameLabel.topAnchor.constraint(equalTo: avatarImage.topAnchor),
-            self.nameLabel.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
+            self.nameLabel.heightAnchor.constraint(equalTo: changeStatusButton.heightAnchor),
             self.nameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-            self.nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.nameLabel.trailingAnchor.constraint(equalTo: changeStatusButton.trailingAnchor),
 
             self.currentStatusLabel.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
-            self.currentStatusLabel.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
-            self.currentStatusLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-            self.currentStatusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.currentStatusLabel.heightAnchor.constraint(equalTo: nameLabel.heightAnchor),
+            self.currentStatusLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            self.currentStatusLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
 
             self.newStatusTextField.bottomAnchor.constraint(equalTo: avatarImage.bottomAnchor),
-            self.newStatusTextField.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 0.2),
-            self.newStatusTextField.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-            self.newStatusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.newStatusTextField.heightAnchor.constraint(equalTo: nameLabel.heightAnchor),
+            self.newStatusTextField.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            self.newStatusTextField.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
 
             self.avatarBackgroundView.topAnchor.constraint(equalTo: self.topAnchor),
             self.avatarBackgroundView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -184,14 +182,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         newStatusTextField.text = ""
     }
 
-    @objc private func didTupChangeTitleButton() {
-        profileTitle = statusText
-        newStatusTextField.text = ""
-    }
-
     @objc private func statusTextChange(_ textField: UITextField) {
-        statusText = textField.text ?? statusText
-    }
+        statusText = textField.text ?? statusText    }
 
     @objc private func didTapAvatar() {
 

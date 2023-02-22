@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class LogInViewController: UIViewController {
 
@@ -156,8 +157,24 @@ class LogInViewController: UIViewController {
     }
 
     @objc private func didTupLoginButton() {
-        let profileViewController = ProfileViewController()
-        self.navigationController?.pushViewController(profileViewController, animated: true)
-    }
+        let userForCheck = CurrentUserService(currentUser: Configuration.user)
+        let checkedUser = userForCheck.userVerification(login: self.loginTextField.text ?? "too short name")
+        if checkedUser != nil {
+            let profileViewController = ProfileViewController(userData: checkedUser!)
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
 
+        else {
+            let alertController = UIAlertController(title: "Неверный логин",
+                                                    message: "Убедитесь, что логин указан корректно",
+                                                    preferredStyle: .alert)
+
+            let closeAction = UIAlertAction(title: "Повторить", style: .default) {_ in
+                alertController.dismiss(animated: true)
+            }
+            alertController.addAction(closeAction)
+            
+            self.present(alertController, animated: true)
+        }
+    }
 }
