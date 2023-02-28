@@ -47,7 +47,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.layer.shadowOpacity = 0.7
         button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(didTupChangeStatusButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -55,7 +54,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         let name = UILabel(frame: .zero)
         name.font = UIFont.boldSystemFont(ofSize: 18)
         name.textColor = .black
-        name.translatesAutoresizingMaskIntoConstraints = false
         return name
     }()
 
@@ -63,7 +61,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         let label = UILabel(frame: .zero)
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -78,7 +75,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         textField.textColor = .black
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.addTarget(self, action: #selector(statusTextChange), for: .editingChanged)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
@@ -87,7 +83,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         view.backgroundColor = .darkGray
         view.isHidden = true
         view.alpha = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -99,7 +94,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.tintColor = .black
         button.contentMode = .scaleToFill
         button.layer.masksToBounds = false
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(closeAvatar), for: .touchUpInside)
         return button
     }()
@@ -135,7 +129,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         self.addSubview(self.avatarImage)
         self.addSubview(self.closeButton)
         self.constraintsActivating()
-
     }
 
     private func constraintsActivating() {

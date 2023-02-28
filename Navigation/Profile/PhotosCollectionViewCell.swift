@@ -39,5 +39,4 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             self.imageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor)
         ])
     }
-
 }
