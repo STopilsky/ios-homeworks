@@ -8,7 +8,6 @@
 import UIKit
 
 public class TestUserService: UserServiceProtocol {
-
     public var testUser: User
 
     public init(testUser: User) {
@@ -16,10 +15,6 @@ public class TestUserService: UserServiceProtocol {
     }
 
     public func userVerification(login: String) -> User? {
-        var correctUser: User? = nil
-        if login == self.testUser.login {
-            correctUser = testUser
-        }
-        return correctUser
+        login == self.testUser.login ? testUser : nil
     }
 }

@@ -8,18 +8,13 @@
 import UIKit
 
 public class CurrentUserService: UserServiceProtocol {
-
     public var currentUser: User
-
+    
     public init(currentUser: User) {
         self.currentUser = currentUser
     }
     
     public func userVerification(login: String) -> User? {
-        var correctUser: User? = nil
-        if login == self.currentUser.login {
-            correctUser = currentUser
-        }
-        return correctUser
+        login == self.currentUser.login ? currentUser : nil
     }
 }

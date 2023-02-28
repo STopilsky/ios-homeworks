@@ -157,10 +157,8 @@ class LogInViewController: UIViewController {
     }
 
     @objc private func didTupLoginButton() {
-        let userForCheck = CurrentUserService(currentUser: Configuration.user)
-        let checkedUser = userForCheck.userVerification(login: self.loginTextField.text ?? "too short name")
-        if checkedUser != nil {
-            let profileViewController = ProfileViewController(userData: checkedUser!)
+        if let checkedUser = Configuration.service.userVerification(login: self.loginTextField.text ?? "too short name") {
+            let profileViewController = ProfileViewController(userData: checkedUser)
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
 

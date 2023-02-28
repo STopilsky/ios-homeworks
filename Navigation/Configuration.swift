@@ -17,17 +17,17 @@ enum Configuration {
 #endif
     }()
 
-    static var user: User = {
+    static var service: UserServiceProtocol = {
 #if DEBUG
-        return.init(login: "THCL",
-                    fullName: "Test Cat",
-                    avatar: UIImage(named: "testCat")!,
-                    status: "Waiting for testing...")
+        return TestUserService(testUser: User(login: "THCL",
+                                              fullName: "Test Cat",
+                                              avatar: UIImage(named: "testCat")!,
+                                              status: "Waiting for testing..."))
 #elseif RELEASE
-        return.init(login: "HCL",
-                    fullName: "Hipster Cat",
-                    avatar: UIImage(named: "defaultavatar")!,
-                    status: "Waiting for something...")
+        return CurrentUserService(currentUser: User(login: "HCL",
+                                                    fullName: "Hipster Cat",
+                                                    avatar: UIImage(named: "defaultavatar")!,
+                                                    status: "Waiting for something..."))
 #endif
     }()
 }
