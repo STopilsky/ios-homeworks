@@ -51,10 +51,6 @@ class PhotosTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup (image: UIImage) {
-    }
-
-
     private func setupContentView() {
         self.contentView.addSubview(self.photosLabel)
         self.contentView.addSubview(self.arrow)
@@ -72,11 +68,9 @@ class PhotosTableViewCell: UITableViewCell {
             self.photosPreView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
             self.photosPreView.heightAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.15),
             self.photosPreView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12)
-
         ])
     }
 }
-
 
 extension PhotosTableViewCell: UICollectionViewDataSource {
 
@@ -95,6 +89,6 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
 
 extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width / 4 - 8, height: (collectionView.frame.width / 4 - 8) / 1.5)
+        CGSize(width: collectionView.frame.width / 4 - 8, height: collectionView.frame.height)
     }
 }

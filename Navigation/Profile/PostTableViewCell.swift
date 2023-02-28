@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import SnapKit
-import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -16,6 +14,7 @@ class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -23,6 +22,7 @@ class PostTableViewCell: UITableViewCell {
         let postImageView = UIImageView()
         postImageView.contentMode = .scaleAspectFit
         postImageView.backgroundColor = .black
+        postImageView.translatesAutoresizingMaskIntoConstraints = false
         return postImageView
     }()
 
@@ -31,6 +31,7 @@ class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .systemGray
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -39,6 +40,7 @@ class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -47,6 +49,7 @@ class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -62,16 +65,9 @@ class PostTableViewCell: UITableViewCell {
     func setup (author: String, description: String, image: String, likes: Int, views: Int) {
         self.authorNamelabel.text = author
         self.descriptionlabel.text = description
-        self.imageFilter(named: image)
+        self.postImageView.image = UIImage(named: image)
         self.likesLabel.text = "Likes: \(likes)"
         self.viewsLabel.text = "Views: \(views)"
-    }
-
-    private func imageFilter (named image: String) {
-        let filter = ImageProcessor()
-        filter.processImage(sourceImage: UIImage(named: image)!, filter: .chrome) { filtredImage in
-            self.postImageView.image = filtredImage
-        }
     }
 
     private func setupContentView() {
@@ -81,30 +77,28 @@ class PostTableViewCell: UITableViewCell {
         self.contentView.addSubview(self.likesLabel)
         self.contentView.addSubview(self.viewsLabel)
 
-        self.authorNamelabel.snp.makeConstraints {make in
-            make.top.leading.trailing.equalToSuperview().inset(16)
-        }
+        NSLayoutConstraint.activate([
+            self.authorNamelabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
+            self.authorNamelabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            self.authorNamelabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
 
-        self.postImageView.snp.makeConstraints {make in
-            make.top.equalTo(self.authorNamelabel.snp.bottom).offset(12)
-            make.centerX.leading.trailing.equalToSuperview()
-            make.height.equalTo(self.contentView.frame.width)
-        }
+            self.postImageView.topAnchor.constraint(equalTo: self.authorNamelabel.bottomAnchor, constant: 12),
+            self.postImageView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.postImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            self.postImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            self.postImageView.heightAnchor.constraint(equalTo: self.contentView.widthAnchor),
 
-        self.descriptionlabel.snp.makeConstraints {make in
-            make.top.equalTo(self.postImageView.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
-        }
+            self.descriptionlabel.topAnchor.constraint(equalTo: self.postImageView.bottomAnchor, constant: 16),
+            self.descriptionlabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            self.descriptionlabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
 
-        self.likesLabel.snp.makeConstraints {make in
-            make.top.equalTo(self.descriptionlabel.snp.bottom).offset(16)
-            make.leading.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().inset(8)
-        }
+            self.likesLabel.topAnchor.constraint(equalTo: self.descriptionlabel.bottomAnchor, constant: 16),
+            self.likesLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8),
+            self.likesLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
 
-        self.viewsLabel.snp.makeConstraints {make in
-            make.top.bottom.equalTo(self.likesLabel)
-            make.trailing.equalToSuperview().inset(16)
-        }
+            self.viewsLabel.topAnchor.constraint(equalTo: self.likesLabel.topAnchor),
+            self.viewsLabel.bottomAnchor.constraint(equalTo: self.likesLabel.bottomAnchor),
+            self.viewsLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
+        ])
     }
 }

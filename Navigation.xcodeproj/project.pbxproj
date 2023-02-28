@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65D75C00C50473373BD723CE /* Pods_Shows_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1393287AE8C831BE423471DC /* Pods_Shows_StorageService.framework */; };
+
 		AA1F1F55293BE7B400F69361 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1F1F54293BE7B400F69361 /* PostTableViewCell.swift */; };
 		AA27F65428AD073700516590 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F65328AD073700516590 /* AppDelegate.swift */; };
 		AA27F65628AD073700516590 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F65528AD073700516590 /* SceneDelegate.swift */; };
@@ -16,8 +16,10 @@
 		AA27F66828AD318D00516590 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F66728AD318D00516590 /* FeedViewController.swift */; };
 		AA27F66C28AD665600516590 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F66B28AD665600516590 /* PostViewController.swift */; };
 		AA27F67228AD813900516590 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F67128AD813900516590 /* InfoViewController.swift */; };
-		AAAA8DD3299CE13800511E0E /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = AAAA8DD2299CE13800511E0E /* iOSIntPackage */; };
-		AAAA8DD6299E10B500511E0E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAAA8DD5299E10B500511E0E /* SnapKit */; };
+		AAAA8DD8299F7F8400511E0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA8DD7299F7F8400511E0E /* User.swift */; };
+		AAAA8DDA299F9A4200511E0E /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA8DD9299F9A4200511E0E /* CurrentUserService.swift */; };
+		AAAA8DDC299F9A6900511E0E /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA8DDB299F9A6900511E0E /* UserServiceProtocol.swift */; };
+		AAAA8DDE29A5669B00511E0E /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA8DDD29A5669B00511E0E /* TestUserService.swift */; };
 		AAB2790B29452855005D17AD /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB2790A29452855005D17AD /* PhotosTableViewCell.swift */; };
 		AAB2790D29455784005D17AD /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB2790C29455784005D17AD /* PhotosCollectionViewCell.swift */; };
 		AAB2790F294616DF005D17AD /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB2790E294616DF005D17AD /* PhotosViewController.swift */; };
@@ -57,10 +59,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0C2D1B96BCDC8F64A15D9052 /* Pods_Shows_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shows_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1393287AE8C831BE423471DC /* Pods_Shows_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shows_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D019830D9A0312C117F1964 /* Pods-Shows-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shows-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Shows-Navigation/Pods-Shows-Navigation.release.xcconfig"; sourceTree = "<group>"; };
-		67583BC1257EB28AA2DC8C41 /* Pods-Shows-StorageService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shows-StorageService.release.xcconfig"; path = "Target Support Files/Pods-Shows-StorageService/Pods-Shows-StorageService.release.xcconfig"; sourceTree = "<group>"; };
 		AA1F1F54293BE7B400F69361 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		AA27F65028AD073700516590 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA27F65328AD073700516590 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +69,10 @@
 		AA27F66728AD318D00516590 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		AA27F66B28AD665600516590 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		AA27F67128AD813900516590 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		AAAA8DD7299F7F8400511E0E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AAAA8DD9299F9A4200511E0E /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		AAAA8DDB299F9A6900511E0E /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
+		AAAA8DDD29A5669B00511E0E /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		AAB2790A29452855005D17AD /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		AAB2790C29455784005D17AD /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAB2790E294616DF005D17AD /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,10 @@
 			isa = PBXGroup;
 			children = (
 				AAB6D3F7299650B000883622 /* Post.swift */,
+				AAAA8DD7299F7F8400511E0E /* User.swift */,
+				AAAA8DDB299F9A6900511E0E /* UserServiceProtocol.swift */,
+				AAAA8DD9299F9A4200511E0E /* CurrentUserService.swift */,
+				AAAA8DDD29A5669B00511E0E /* TestUserService.swift */,
 				AAB6D3CA299575AA00883622 /* StorageService.h */,
 				AAB6D3CB299575AA00883622 /* StorageService.docc */,
 			);
@@ -396,8 +402,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAA8DDC299F9A6900511E0E /* UserServiceProtocol.swift in Sources */,
 				AAB6D3F8299650B100883622 /* Post.swift in Sources */,
+				AAAA8DDE29A5669B00511E0E /* TestUserService.swift in Sources */,
+				AAAA8DDA299F9A4200511E0E /* CurrentUserService.swift in Sources */,
 				AAB6D3CC299575AA00883622 /* StorageService.docc in Sources */,
+				AAAA8DD8299F7F8400511E0E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
