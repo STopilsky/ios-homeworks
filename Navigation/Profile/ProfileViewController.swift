@@ -7,8 +7,6 @@
 
 import UIKit
 import StorageService
-import SnapKit
-import iOSIntPackage
 
 class ProfileViewController: UIViewController {
 
@@ -23,6 +21,7 @@ class ProfileViewController: UIViewController {
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
 
@@ -42,7 +41,7 @@ class ProfileViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Post"
         self.view.addSubview(self.tableView)
-        self.setupConstraints()
+        self.constraintsActivating()
     }
     
     private func constraintsActivating () {

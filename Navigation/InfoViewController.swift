@@ -28,7 +28,7 @@ class InfoViewController: UIViewController {
 
     @objc private func didTupAlertButton () {
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
-        let removeAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+        let removeAction = UIAlertAction(title: "Удалить",style: .destructive) { _ in
             print("Удалено") }
         let hideAction = UIAlertAction(title: "Скрыть", style: .cancel) { _ in
             print("Скрыто") }
