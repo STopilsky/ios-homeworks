@@ -10,6 +10,8 @@ import StorageService
 
 class LogInViewController: UIViewController {
 
+    var loginDelegate: LoginViewControllerDelegateProtocol?
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -157,14 +159,18 @@ class LogInViewController: UIViewController {
     }
 
     @objc private func didTupLoginButton() {
-        if let checkedUser = Configuration.service.userVerification(login: self.loginTextField.text ?? "too short name") {
-            let profileViewController = ProfileViewController(userData: checkedUser)
+        let isUserDataCorrect = self.loginDelegate?.check(
+            login: self.loginTextField.text ?? "too short name",
+            password: self.passwordTextField.text ?? "to short pass") ?? false
+        
+        if isUserDataCorrect {
+            let profileViewController = ProfileViewController(userData: Configuration.user)
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
 
         else {
-            let alertController = UIAlertController(title: "Неверный логин",
-                                                    message: "Убедитесь, что логин указан корректно",
+            let alertController = UIAlertController(title: "Неверная пара логин / пароль",
+                                                    message: "Убедитесь, что данные указаны корректно",
                                                     preferredStyle: .alert)
 
             let closeAction = UIAlertAction(title: "Повторить", style: .default) {_ in
