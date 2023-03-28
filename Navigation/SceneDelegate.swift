@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -27,7 +28,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         func createLogInViewController() -> UINavigationController {
             let logInViewController = LogInViewController()
+            let myLoginfactory = MyLoginFactory()
             logInViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
+            logInViewController.loginDelegate = myLoginfactory.makeLoginInspector()
             return UINavigationController(rootViewController: logInViewController)
         }
 

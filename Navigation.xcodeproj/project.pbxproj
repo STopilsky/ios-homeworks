@@ -26,9 +26,14 @@
 		AAB6D3DA299575AA00883622 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = AAB6D3CA299575AA00883622 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AAB6D3DD299575AA00883622 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB6D3C8299575AA00883622 /* StorageService.framework */; };
 		AAB6D3DE299575AA00883622 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAB6D3C8299575AA00883622 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AAB6D3ED29963B3600883622 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB6D3EC29963B3600883622 /* Configuration.swift */; };
 		AAB6D3F8299650B100883622 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB6D3F7299650B000883622 /* Post.swift */; };
+		AACF102229BCF80A0083DF0B /* LoginViewControllerDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACF102129BCF80A0083DF0B /* LoginViewControllerDelegateProtocol.swift */; };
+		AACF102429BCF91A0083DF0B /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACF102329BCF91A0083DF0B /* LoginInspector.swift */; };
+		AACF102629BF654A0083DF0B /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACF101F29BCF5F70083DF0B /* Checker.swift */; };
 		AAD8EDC62923E30800C59566 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD8EDC52923E30800C59566 /* LogInViewController.swift */; };
+		AADACC1F29BF7120002E1C7A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB6D3EC29963B3600883622 /* Configuration.swift */; };
+		AADACC2329C51315002E1C7A /* LoginFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADACC2229C51315002E1C7A /* LoginFactoryProtocol.swift */; };
+		AADACC2529C51398002E1C7A /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADACC2429C51398002E1C7A /* MyLoginFactory.swift */; };
 		AADB37E028BE71CE00E2A374 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADB37DF28BE71CE00E2A374 /* ProfileHeaderView.swift */; };
 		AADB37E228BEA31C00E2A374 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADB37E128BEA31C00E2A374 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
@@ -80,7 +85,12 @@
 		AAB6D3CB299575AA00883622 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		AAB6D3EC29963B3600883622 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		AAB6D3F7299650B000883622 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		AACF101F29BCF5F70083DF0B /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		AACF102129BCF80A0083DF0B /* LoginViewControllerDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegateProtocol.swift; sourceTree = "<group>"; };
+		AACF102329BCF91A0083DF0B /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		AAD8EDC52923E30800C59566 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		AADACC2229C51315002E1C7A /* LoginFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactoryProtocol.swift; sourceTree = "<group>"; };
+		AADACC2429C51398002E1C7A /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		AADB37DF28BE71CE00E2A374 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		AADB37E128BEA31C00E2A374 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +152,11 @@
 		AAB6D3C9299575AA00883622 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
+				AACF101F29BCF5F70083DF0B /* Checker.swift */,
+				AACF102129BCF80A0083DF0B /* LoginViewControllerDelegateProtocol.swift */,
+				AACF102329BCF91A0083DF0B /* LoginInspector.swift */,
+				AADACC2229C51315002E1C7A /* LoginFactoryProtocol.swift */,
+				AADACC2429C51398002E1C7A /* MyLoginFactory.swift */,
 				AAB6D3F7299650B000883622 /* Post.swift */,
 				AAAA8DD7299F7F8400511E0E /* User.swift */,
 				AAAA8DDB299F9A6900511E0E /* UserServiceProtocol.swift */,
@@ -281,12 +296,12 @@
 			files = (
 				AAB2790B29452855005D17AD /* PhotosTableViewCell.swift in Sources */,
 				AAB2790D29455784005D17AD /* PhotosCollectionViewCell.swift in Sources */,
-				AAB6D3ED29963B3600883622 /* Configuration.swift in Sources */,
 				AA27F66C28AD665600516590 /* PostViewController.swift in Sources */,
 				AADB37E228BEA31C00E2A374 /* ProfileViewController.swift in Sources */,
 				AA27F65428AD073700516590 /* AppDelegate.swift in Sources */,
 				AA1F1F55293BE7B400F69361 /* PostTableViewCell.swift in Sources */,
 				AADB37E028BE71CE00E2A374 /* ProfileHeaderView.swift in Sources */,
+				AADACC1F29BF7120002E1C7A /* Configuration.swift in Sources */,
 				AA27F66828AD318D00516590 /* FeedViewController.swift in Sources */,
 				AA27F67228AD813900516590 /* InfoViewController.swift in Sources */,
 				AAB2790F294616DF005D17AD /* PhotosViewController.swift in Sources */,
@@ -299,12 +314,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACF102429BCF91A0083DF0B /* LoginInspector.swift in Sources */,
 				AAAA8DDC299F9A6900511E0E /* UserServiceProtocol.swift in Sources */,
+				AACF102229BCF80A0083DF0B /* LoginViewControllerDelegateProtocol.swift in Sources */,
 				AAB6D3F8299650B100883622 /* Post.swift in Sources */,
+				AADACC2329C51315002E1C7A /* LoginFactoryProtocol.swift in Sources */,
 				AAAA8DDE29A5669B00511E0E /* TestUserService.swift in Sources */,
 				AAAA8DDA299F9A4200511E0E /* CurrentUserService.swift in Sources */,
 				AAB6D3CC299575AA00883622 /* StorageService.docc in Sources */,
+				AACF102629BF654A0083DF0B /* Checker.swift in Sources */,
 				AAAA8DD8299F7F8400511E0E /* User.swift in Sources */,
+				AADACC2529C51398002E1C7A /* MyLoginFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
