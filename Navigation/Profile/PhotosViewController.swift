@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
     
@@ -14,7 +15,6 @@ class PhotosViewController: UIViewController {
         layout.scrollDirection = .vertical
         return layout
     }()
-
 
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
