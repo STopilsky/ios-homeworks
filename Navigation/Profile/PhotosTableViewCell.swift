@@ -80,7 +80,7 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as! PhotosCollectionViewCell
-        cell.setup(image: "picture\(indexPath.row+1)")
+        cell.setup(image: UIImage(named: "picture\(indexPath.row+1)")!)
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
         return cell
