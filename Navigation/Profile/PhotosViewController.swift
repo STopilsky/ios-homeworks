@@ -27,17 +27,23 @@ class PhotosViewController: UIViewController {
 
     private let imagePublisherFacade = ImagePublisherFacade() // Создаем экземпляр ImagePublisherFacade
     private var images: [UIImage] = [] // Создаем пустой массив изображений
+    private var userImages: [UIImage] = [] // Массив пользовательских изображений
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         self.navigationItem.title = "Photo Gallery"
+
+        for i in 1...20 { // Наполняем массив пользовательских изображений
+            self.userImages.append(UIImage(named: "picture\(i)")!)
+        }
+
         self.setupView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.imagePublisherFacade.subscribe(self) // Подписываем класc на изменения
-        self.imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20) // Загружаем фото с задержкой
+        self.imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: self.userImages) // Загружаем фото с задержкой
     }
 
     override func viewWillDisappear(_ animated: Bool) {
