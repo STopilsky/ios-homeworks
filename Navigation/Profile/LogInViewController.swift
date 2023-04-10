@@ -41,7 +41,8 @@ class LogInViewController: UIViewController {
     private lazy var loginTextField: UITextField = {
         let loginTextField = UITextField()
         loginTextField.backgroundColor = .systemGray6
-        loginTextField.placeholder = "Email or phone"
+//        loginTextField.placeholder = "Email or phone"
+        loginTextField.text = "HCL"
         loginTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height:0))
         loginTextField.leftViewMode = .always
         loginTextField.borderStyle = .line
@@ -55,7 +56,8 @@ class LogInViewController: UIViewController {
     private lazy var passwordTextField: UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.backgroundColor = .systemGray6
-        passwordTextField.placeholder = "Password"
+//        passwordTextField.placeholder = "Password"
+        passwordTextField.text = "123"
         passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height:0))
         passwordTextField.leftViewMode = .always
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false

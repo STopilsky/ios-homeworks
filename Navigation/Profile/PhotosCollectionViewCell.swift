@@ -25,8 +25,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(image: String) {
-        self.imageView.image = UIImage(named: image)
+    func setup(image: UIImage) {
+        self.imageView.image = image
     }
 
     private func setupView() {
