@@ -16,6 +16,9 @@
 		AA27F66C28AD665600516590 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F66B28AD665600516590 /* PostViewController.swift */; };
 		AA27F67228AD813900516590 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA27F67128AD813900516590 /* InfoViewController.swift */; };
 		AA61149C29D1D02C00F9CCE6 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = AA61149B29D1D02C00F9CCE6 /* iOSIntPackage */; };
+		AAA5AE5729E40F610020F17C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA5AE5629E40F610020F17C /* CustomButton.swift */; };
+		AAA5AE5A29E53FFA0020F17C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA5AE5929E53FFA0020F17C /* CustomTextField.swift */; };
+		AAA5AE5C29E5501A0020F17C /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA5AE5B29E5501A0020F17C /* FeedModel.swift */; };
 		AAAA8DD8299F7F8400511E0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA8DD7299F7F8400511E0E /* User.swift */; };
 		AAAA8DDA299F9A4200511E0E /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA8DD9299F9A4200511E0E /* CurrentUserService.swift */; };
 		AAAA8DDC299F9A6900511E0E /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA8DDB299F9A6900511E0E /* UserServiceProtocol.swift */; };
@@ -74,6 +77,9 @@
 		AA27F66728AD318D00516590 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		AA27F66B28AD665600516590 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		AA27F67128AD813900516590 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		AAA5AE5629E40F610020F17C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		AAA5AE5929E53FFA0020F17C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		AAA5AE5B29E5501A0020F17C /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		AAAA8DD7299F7F8400511E0E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AAAA8DD9299F9A4200511E0E /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		AAAA8DDB299F9A6900511E0E /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
@@ -147,13 +153,24 @@
 				AA27F66B28AD665600516590 /* PostViewController.swift */,
 				AA27F67128AD813900516590 /* InfoViewController.swift */,
 				AADB37DE28BE71A300E2A374 /* Profile */,
+				AAA5AE5829E40F750020F17C /* UI */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		AAA5AE5829E40F750020F17C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				AAA5AE5629E40F610020F17C /* CustomButton.swift */,
+				AAA5AE5929E53FFA0020F17C /* CustomTextField.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		AAB6D3C9299575AA00883622 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
+				AAA5AE5B29E5501A0020F17C /* FeedModel.swift */,
 				AACF101F29BCF5F70083DF0B /* Checker.swift */,
 				AACF102129BCF80A0083DF0B /* LoginViewControllerDelegateProtocol.swift */,
 				AACF102329BCF91A0083DF0B /* LoginInspector.swift */,
@@ -306,6 +323,7 @@
 				AAB2790D29455784005D17AD /* PhotosCollectionViewCell.swift in Sources */,
 				AA27F66C28AD665600516590 /* PostViewController.swift in Sources */,
 				AADB37E228BEA31C00E2A374 /* ProfileViewController.swift in Sources */,
+				AAA5AE5729E40F610020F17C /* CustomButton.swift in Sources */,
 				AA27F65428AD073700516590 /* AppDelegate.swift in Sources */,
 				AA1F1F55293BE7B400F69361 /* PostTableViewCell.swift in Sources */,
 				AADB37E028BE71CE00E2A374 /* ProfileHeaderView.swift in Sources */,
@@ -315,6 +333,7 @@
 				AAB2790F294616DF005D17AD /* PhotosViewController.swift in Sources */,
 				AAD8EDC62923E30800C59566 /* LogInViewController.swift in Sources */,
 				AA27F65628AD073700516590 /* SceneDelegate.swift in Sources */,
+				AAA5AE5A29E53FFA0020F17C /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +348,7 @@
 				AADACC2329C51315002E1C7A /* LoginFactoryProtocol.swift in Sources */,
 				AAAA8DDE29A5669B00511E0E /* TestUserService.swift in Sources */,
 				AAAA8DDA299F9A4200511E0E /* CurrentUserService.swift in Sources */,
+				AAA5AE5C29E5501A0020F17C /* FeedModel.swift in Sources */,
 				AAB6D3CC299575AA00883622 /* StorageService.docc in Sources */,
 				AACF102629BF654A0083DF0B /* Checker.swift in Sources */,
 				AAAA8DD8299F7F8400511E0E /* User.swift in Sources */,

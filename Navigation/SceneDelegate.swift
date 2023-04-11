@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         func createFeedViewController() -> UINavigationController {
             let feedViewController = FeedViewController()
+            feedViewController.secretWordCheckerDelegate = FeedModel()
             feedViewController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "newspaper"), tag: 0)
             return UINavigationController(rootViewController: feedViewController)
         }
@@ -40,7 +41,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tabBarController.viewControllers = [createFeedViewController(), createLogInViewController()]
             return tabBarController
         }
-
     }
 }
 

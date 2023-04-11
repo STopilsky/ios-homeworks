@@ -6,40 +6,32 @@
 //
 
 import UIKit
+import StorageService
 
 class FeedViewController: UIViewController {
+    var secretWordCheckerDelegate: SecretWordCheckerDelegateProtocol?
 
     var titlePost = "My first post"
 
-    private lazy var firstButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        button.setTitle("First Button", for: .normal)
-        button.layer.cornerRadius = 20
-        button.backgroundColor = .systemIndigo
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.7
-        button.addTarget(self, action: #selector(didTupButton), for: .touchUpInside)
-        button.layer.masksToBounds = false
-        return button
-    } ()
+    private lazy var checkTextField = CustomTextField(text: "Secret Word", cornerRadius: 10)
 
-    private lazy var secondButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        button.setTitle("Second Button", for: .normal)
-        button.layer.cornerRadius = 20
-        button.backgroundColor = .systemMint
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.7
-        button.addTarget(self, action: #selector(didTupButton), for: .touchUpInside)
-        button.layer.masksToBounds = false
-        return button
+    private lazy var checkLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Unchecked"
+        label.backgroundColor = .systemBlue
+        label.textColor = .white
+        label.textAlignment = .center
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 10
+        return label
     }()
 
-    private lazy var twoButtonsStackView: UIStackView = {
+    private lazy var firstButton = CustomButton(title: "FirstButton", backGroundColor: .systemIndigo, target: self, function: #selector(buttonTapped))
+    private lazy var secondButton = CustomButton(title: "SecondButton", backGroundColor: .systemMint, target: self, function: #selector(buttonTapped))
+    private lazy var checkGuessButton = CustomButton(title: "-> Tap to check <-", backGroundColor: .orange, target: self, function: #selector(checkGuess))
+
+
+    private lazy var stackView: UIStackView = {
         let stack = UIStackView(frame: .zero)
         stack.axis = .vertical
         stack.distribution = .fillEqually
@@ -51,25 +43,53 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
-        self.view.addSubview(twoButtonsStackView)
-        self.twoButtonsStackView.addArrangedSubview(firstButton)
-        self.twoButtonsStackView.addArrangedSubview(secondButton)
-
-        self.twoButtonsStackViewConstraints()
+        self.setupStackView()
+        self.setupGestures()
     }
 
-    private func twoButtonsStackViewConstraints() {
+    private func setupStackView() {
+        self.view.addSubview(stackView)
+        self.stackView.addArrangedSubview(checkTextField)
+        self.stackView.addArrangedSubview(checkLabel)
+        self.stackView.addArrangedSubview(checkGuessButton)
+        self.stackView.addArrangedSubview(firstButton)
+        self.stackView.addArrangedSubview(secondButton)
+
         NSLayoutConstraint.activate([
-            self.twoButtonsStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            self.twoButtonsStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.twoButtonsStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3),
-            self.twoButtonsStackView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8)
+            self.stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.stackView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
+            self.stackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5)
         ])
     }
 
-    @objc private func didTupButton() {
+    private func setupGestures() {
+        let tupGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
+        self.view.addGestureRecognizer(tupGesture)
+    }
+
+    @objc private func forcedHidingKeyboard() {
+        self.view.endEditing(true)
+    }
+
+    @objc private func buttonTapped() {
         let postViewController = PostViewController ()
-        postViewController.titlePost = titlePost
         self.navigationController?.pushViewController(postViewController, animated: true)
+    }
+
+    @objc private func checkGuess() {
+        if checkTextField.text == "" {
+            self.checkLabel.backgroundColor = .systemYellow
+            self.checkLabel.text = "Textfield is empty"
+        } else {
+            let isSecretWordcorrect = self.secretWordCheckerDelegate?.check(word: checkTextField.text) ?? false
+            if isSecretWordcorrect {
+                self.checkLabel.backgroundColor = .systemGreen
+                self.checkLabel.text = "Word is correct"
+            } else {
+                self.checkLabel.backgroundColor = .systemRed
+                self.checkLabel.text = "Wrong word"
+            }
+        }
     }
 }

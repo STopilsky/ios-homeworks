@@ -11,12 +11,12 @@ final public class Checker: LoginViewControllerDelegateProtocol {
 
     static public let shared: LoginViewControllerDelegateProtocol = Checker()
 
-        private let login = "HCL"
-        private let password = "123"
+    private let login = "HCL"
+    private let password = "123"
+    
+    private init() { }
 
-        private init() { }
-
-        public func check(login: String, password: String) -> Bool {
-            return login == self.login && password == self.password
-        }
+    public func check(login: String, password: String) -> Bool {
+        return login == self.login && password == self.password
+    }
 }
