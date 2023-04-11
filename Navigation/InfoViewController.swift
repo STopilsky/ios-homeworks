@@ -9,24 +9,27 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
-    private lazy var alertButton: UIButton = {
-        let alertButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        alertButton.backgroundColor = .systemRed
-        alertButton.layer.cornerRadius = 20
-        alertButton.setTitle("на выбор", for: .normal)
-        alertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        alertButton.addTarget(self, action: #selector(didTupAlertButton), for: .touchUpInside)
-        return alertButton
-    }()
-    
+    private lazy var alertButton = CustomButton(title: "На выбор", backGroundColor: .systemRed, target: self, function: #selector(buttonTapped))
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray3
-        self.view.addSubview(self.alertButton)
-        self.alertButton.center = self.view.center
+        self.setupAlertButton()
     }
 
-    @objc private func didTupAlertButton () {
+    private func setupAlertButton() {
+        self.view.addSubview(self.alertButton)
+        self.alertButton.center = self.view.center
+
+        NSLayoutConstraint.activate([
+            self.alertButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.alertButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.alertButton.widthAnchor.constraint(equalToConstant: 200),
+            self.alertButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+
+    @objc private func buttonTapped() {
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         let removeAction = UIAlertAction(title: "Удалить",style: .destructive) { _ in
             print("Удалено") }

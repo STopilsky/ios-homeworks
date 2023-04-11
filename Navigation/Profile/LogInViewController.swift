@@ -38,43 +38,13 @@ class LogInViewController: UIViewController {
         return lpStacklView
     }()
 
-    private lazy var loginTextField: UITextField = {
-        let loginTextField = UITextField()
-        loginTextField.backgroundColor = .systemGray6
-//        loginTextField.placeholder = "Email or phone"
-        loginTextField.text = "HCL"
-        loginTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height:0))
-        loginTextField.leftViewMode = .always
-        loginTextField.borderStyle = .line
-        loginTextField.layer.borderColor = UIColor.lightGray.cgColor
-        loginTextField.layer.borderWidth = 1
-        loginTextField.keyboardType = .emailAddress
-        loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        return loginTextField
-    }()
+    private lazy var loginTextField = CustomTextField(text: "HCL", backGroundColor: .systemGray6)
+    private lazy var passwordTextField = CustomTextField(text: "123", backGroundColor: .systemGray6)
 
-    private lazy var passwordTextField: UITextField = {
-        let passwordTextField = UITextField()
-        passwordTextField.backgroundColor = .systemGray6
-//        passwordTextField.placeholder = "Password"
-        passwordTextField.text = "123"
-        passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height:0))
-        passwordTextField.leftViewMode = .always
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        return passwordTextField
-    }()
-
-    private lazy var logInButton: UIButton = {
-        let logInButton = UIButton()
-        logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        logInButton.layer.cornerRadius = 10
-        logInButton.clipsToBounds = true
-        logInButton.setTitle("Log In", for: .normal)
-        logInButton.setTitleColor(.white, for: .normal)
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
-        logInButton.addTarget(self, action: #selector(didTupLoginButton), for: .touchUpInside)
-        return logInButton
-    }()
+    private lazy var logInButton = CustomButton(title: "Log In",
+                                                backGroundImage: UIImage(named: "blue_pixel")!,
+                                                target: self, 
+                                                function: #selector(loginButtonTapped))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +61,6 @@ class LogInViewController: UIViewController {
         self.lpStacklView.addArrangedSubview(self.loginTextField)
         self.lpStacklView.addArrangedSubview(self.passwordTextField)
         self.scrollView.addSubview(self.logInButton)
-
     }
 
     private func constraintsActivating() {
@@ -160,7 +129,7 @@ class LogInViewController: UIViewController {
         self.scrollView.setContentOffset(.zero, animated: true)
     }
 
-    @objc private func didTupLoginButton() {
+    @objc private func loginButtonTapped() {
         let isUserDataCorrect = self.loginDelegate?.check(
             login: self.loginTextField.text ?? "too short name",
             password: self.passwordTextField.text ?? "to short pass") ?? false

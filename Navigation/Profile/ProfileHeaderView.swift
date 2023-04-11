@@ -36,20 +36,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return imageView
     }()
 
-    private lazy var changeStatusButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        button.layer.cornerRadius = 12
-        button.setTitle("Status Change", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.7
-        button.layer.masksToBounds = false
-        button.addTarget(self, action: #selector(didTupChangeStatusButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private lazy var changeStatusButton = CustomButton(title: "Status Change",
+                                                       backGroundColor: .systemBlue,
+                                                       target: self, 
+                                                       function:  #selector(didTupChangeStatusButton))
 
     private lazy var nameLabel: UILabel = {
         let name = UILabel(frame: .zero)
@@ -67,20 +57,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return label
     }()
 
-    private lazy var newStatusTextField: UITextField = {
-        let textField = UITextField(frame: .zero)
-        textField.leftView = UIView(frame: CGRect(x: self.frame.minX, y: self.frame.minY, width: 10, height: self.frame.height))
-        textField.leftViewMode = .always
-        textField.layer.cornerRadius = 12
-        textField.backgroundColor = .white
-        textField.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
-        textField.layer.borderWidth = 1
-        textField.textColor = .black
-        textField.font = UIFont.systemFont(ofSize: 15)
-        textField.addTarget(self, action: #selector(statusTextChange), for: .editingChanged)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
+    private lazy var newStatusTextField = CustomTextField(cornerRadius: 10)
 
     private lazy var avatarBackgroundView: UIView = {
         let view = UIView(frame: .zero)
@@ -128,9 +105,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
     private func setupView() {
         self.addSubview(self.changeStatusButton)
+        self.changeStatusButton.addTarget(self, action: #selector(didTupChangeStatusButton), for: .touchUpInside)
         self.addSubview(self.nameLabel)
         self.addSubview(self.currentStatusLabel)
         self.addSubview(self.newStatusTextField)
+        self.newStatusTextField.addTarget(self, action: #selector(statusTextChange), for: .editingChanged)
         self.addSubview(self.avatarBackgroundView)
         self.addSubview(self.avatarImage)
         self.addSubview(self.closeButton)
